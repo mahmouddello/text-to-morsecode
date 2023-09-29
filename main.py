@@ -1,5 +1,6 @@
 import logging
 import time
+from typing import Callable
 
 
 class MorseCoder:
@@ -8,7 +9,7 @@ class MorseCoder:
         self.encoded_message = ""
         self.decoded_message = ""
 
-    def text_to_morse(self):
+    def text_to_morse(self) -> str:
         """Convert text to morse by looping over dictionary keys and getting the corresponding value"""
         self.encoded_message = ""  # ensure to clear the message in each new call
         text = input("What would you like to convert to morse code?\n")
@@ -16,7 +17,7 @@ class MorseCoder:
             self.encoded_message += self.codes[letter.upper()] + " "
         return f"Your encoded message to morse code is:\n{self.encoded_message}"
 
-    def morse_to_text(self):
+    def morse_to_text(self) -> str:
         """Convert morse code to text"""
         self.decoded_message = ""  # ensure to clear the message in each new call
         code = input("What would you want to convert to text?\n")
@@ -62,12 +63,12 @@ while still_on:
         logging.warning(f"\nVariable `choice` is not an integer! - {error}")
         time.sleep(0.1)
     else:
-        final_choice = funcs.get(choice, None)
+        final_choice: Callable[[], str] = funcs.get(choice, None)
         if final_choice is not None:
             print(final_choice())
         else:
             logging.warning(f"Wrong key!")
     finally:
-        want_to_quit = input("\nWant to quit? type 'Y': ")
+        want_to_quit: str = input("\nWant to quit? type 'Y': ")
         if want_to_quit.upper() == "Y":
             still_on = False
