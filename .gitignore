@@ -102,5 +102,6 @@ fabric.properties
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+__pychache__/
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,venv
